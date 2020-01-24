@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gitHubViewer">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>GitHubViewer</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="index.js"></script>
+    <script src="services/github.js"></script>
+  </head>
+  <body ng-controller="MainController">
+    <!-- View-->    
+      <div class="container">
+      <h1 class="display-4">{{head}}</h1>
+      <p class="alert alert-danger" ng-show="errorUser">
+        {{ errorUser }}
+      </p>
+    <form name="searchUser" ng-submit="search(username)">
+      <input
+        type="text"
+        required
+        ng-model="username"
+        class="form-control"
+        placeholder="Enter Username"
+        id="input"
+      />
+      <input
+        type="submit"
+        class="btn btn-primary m-2"
+        id="btn"
+        value="Search"
+      />
+    </form>
+    <hr />
+    <div ng-include="'code.html'" ng-show="user" id="result"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+   
+  </body>
+</html>

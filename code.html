@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        <h6>{{user.login}}</h6>
+      </div>
+      <img
+        ng-src="{{user.avatar_url}}"
+        class="card-img-top img-thumbnail"
+        alt="{{user.name }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{user.name}}</h5>
+        <hr />
+        <p>{{user.location}}</p>
+        <p class="card-text">{{user.bio}}</p>
+        <a href="{{user.html_url}}" target="_blank" class="btn btn-primary"
+          >Profile</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <h3 class="text-center">Repos</h3>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip04">Order By:</label>
+      <select
+        class="custom-select"
+        id="validationTooltip04"
+        ng-model="repoSortOrder"
+        required
+      >
+        <option selected value="+Name">Name</option>
+        <option value="-stargazers_count">Star</option>
+      </select>
+      <div class="invalid-tooltip">
+        Please select a valid Order.
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Stars</th>
+          <th>Languages</th>
+          <th>Clone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="repo in repos | orderBy: repoSortOrder ">
+          <td>{{ repo.name }}</td>
+          <td>{{ repo.stargazers_count | number }}</td>
+          <td>{{ repo.language }}</td>
+          <td>
+            <a href="{{ repo.clone_url }}" class="btn btn-success">Clone!</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
